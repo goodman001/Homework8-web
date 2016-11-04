@@ -87,7 +87,7 @@
 			</ul>
 			<div id="myTabContent" class="tab-content">
 				<div class="tab-pane fade in active" id="state">
-					<div class="well">Legislators by State</div>
+					<div class="well">您好，我在 Well 中！</div>
 					<table class="table table-bordered">
 						<tr>
 						    <th>index</th>
