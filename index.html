@@ -56,7 +56,7 @@
     <div class="container-fluid all" >
         <div class="sidebar">
             <ul class="nav ">
-                <li class="active"><a ng-click="doSomething('back.php?flag=1')" >Legislators</a></li>
+                <li class="active"><a ng-click="doSomething('back.php?category=0')" >Legislators</a></li>
                 <li><a  >Bills</a></li>
                 <li><a href="message.html">Committees</a></li>
                 <li><a href="ui.html">Favorites</a></li>
@@ -87,17 +87,36 @@
 			</ul>
 			<div id="myTabContent" class="tab-content">
 				<div class="tab-pane fade in active" id="state">
-					<div class="well">Legislators by State</div>
-					<table class="table table-bordered">
+					<div class="well" style="height:80px;">
+						<div class="col-md-6">Legislators by State
+						</div>
+						<div class="col-md-6 text-right" style="text-align:right" >
+							<select class="form-control" style="margin-left:60%;width:30%;">
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</select>
+						</div>
+					</div>
+					<table class="table">
 						<tr>
-						    <th>index</th>
-						    <th ng-repeat="(x,y) in items[0]">{{ x }}</th>
+						    <th>Party</th>
+						    <th>Name</th>
+						    <th>Chamber</th>
+						    <th>District</th>
+						    <th>State</th>
+						    <th>View Details</th>
 						</tr>
 						<tr ng-repeat="x in items">
-						    <td>{{ $index + 1 }}</td>
-						    <td ng-bind="x.name"></td>
-						    <td ng-bind="x.city"></td>
-						    <td ng-bind="x.country"></td>
+							<td></td>
+							<td >{{ x.last_name }},{{ x.first_name }}</td>
+							<td ng-bind="x.chamber"></td>
+							<td ng-if="!x.district">N.A</td>
+							<td ng-if="x.district">{{x.district}}</td>
+							<td ng-bind="x.state"></td>
+							<td ng-bind=""></td>
 						</tr>
 					</table>
 					<nav>
@@ -147,11 +166,11 @@
             $scope.doSomething = function(requestString){
             $http.get(requestString).then(function (response) {
             //数据源
-            $scope.data = response.data.records;
+            $scope.data = response.data.results;
             //分页总数
-            $scope.pageSize = 5;
+            $scope.pageSize = 10;
             $scope.pages = Math.ceil($scope.data.length / $scope.pageSize); //分页数
-            $scope.newPages = $scope.pages > 5 ? 5 : $scope.pages;
+            $scope.newPages = $scope.pages > 10 ? 10 : $scope.pages;
             $scope.pageList = [];
             $scope.selPage = 1;
             //设置表格数据源(分页)
