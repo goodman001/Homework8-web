@@ -57,12 +57,12 @@
         <div class="sidebar">
             <ul class="nav ">
                 <li class="active"><a ng-click="doSomething('back.php?category=1')" >Legislators</a></li>
-                <li><a  >Bills</a></li>
+                <li><a ng-click="dobill('back.php?bill=true')" >Bills</a></li>
                 <li><a href="message.html">Committees</a></li>
                 <li><a href="ui.html">Favorites</a></li>
             </ul>
         </div>
-        <div class="maincontent" ng-hide="flag" class="jumbotron">
+        <div class="maincontent" ng-hide="flag1" class="jumbotron">
 		<h2>Legislators</h2>
 		<div class="thumbnail">
 			<div id="myCarousel" class="carousel slide">
@@ -458,66 +458,284 @@
 			</div>
 		</div>	
     </div>
+        <div class="maincontent" ng-hide="flag2" class="jumbotron">
+            <h2>Bills</h2>
+            <div class="thumbnail">
+                <div id="myCarouselbill" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <ul id="myTab1" class="nav nav-tabs">
+                                <li class="active"><a href="#billactive" data-toggle="tab" ng-click="dobill('back.php?bill=true')">Active Bills</a>
+                                </li>
+                                <li><a href="#billnew" data-toggle="tab" ng-click="dobill('back.php?bill=false')">New Bills</a></li>
+                            </ul>
+                            <div id="myTab1Content" class="tab-content">
+                                <div class="tab-pane fade in active" id="billactive">
+                                    <div class="panel panel-default" style="margin:10px;">
+                                        <div class="panel-heading" style="height:60px;">
+                                            <div class="col-md-6">Legislators by State
+                                            </div>
+                                            <div class="col-md-6 text-right" style="text-align:right" >
+                                                <select class="form-control" style="margin-left:60%;width:30%;" ng-model="state" ng-click="doSomething('back.php?category='+state)">
+                                                    <option value="Mississippi">1</option>
+                                                    <option value="Illinois">2</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <table class="table">
+                                                <tr>
+                                                    <th>Bill ID</th>
+                                                    <th>Bill Type</th>
+                                                    <th>Chamber</th>
+                                                    <th>Introduced</th>
+                                                    <th>Sponsor</th>
+                                                    <th>View Details</th>
+                                                </tr>
+                                                <tr ng-repeat="x in billitems">
+                                                    <td ng-bind="x.bill_id.toUpperCase()"></td>
+                                                    <td ng-bind="x.bill_type.toUpperCase()"></td>
+                                                    <td ng-if="x.chamber == 'house'"><ul class="list-inline"><li><img src="http://cs-server.usc.edu:45678/hw/hw8/images/h.png" class="img-responsive" style="width:20px;height:auto"></li><li>House</li></ul></td>
+                                                    <td ng-if="x.chamber != 'house'"><ul class="list-inline"><li><img src="http://cs-server.usc.edu:45678/hw/hw8/images/s.svg" class="img-responsive" style="width:20px;height:auto"></li><li>Senate</li></ul></td>
+                                                    <td ng-bind="x.introduced_on"></td>
+                                                    <td>{{ x.sponsor.title }},{{ x.sponsor.last_name }},{{ x.sponsor.first_name }}</td>
+                                                    <td ><a href="#myCarouselbill"  data-slide="next" ng-click="detail_part2('back.php?detail=2&billid='+x.bill_id)" >dfdaffaf</a></td>
+                                                </tr>
+                                            </table>
+                                            <nav>
+                                                <ul class="pagination">
+                                                    <li>
+                                                    <a ng-click="Previous()">
+                                                        <span>上一页</span>
+                                                    </a>
+                                                    </li>
+                                                    <li ng-repeat="page in pageList" ng-class="{active: isActivePage(page)}" >
+                                                    <a ng-click="selectPage(page)" >{{ page }}</a>
+                                                    </li>
+                                                    <li>
+                                                    <a ng-click="Next()">
+                                                        <span>下一页</span>
+                                                    </a>
+                                                    </li>
+                                                </ul>
+                                            </nav>					
+                                        </div>
+
+
+                                    </div>
+                                    
+                                </div>
+                                <div class="tab-pane fade" id="billnew">
+                                    billnew
+                                    <div class="panel panel-default" style="margin:10px;">
+                                        <div class="panel-heading" style="height:60px;">
+                                            <div class="col-md-6">Legislators by State
+                                            </div>
+                                            <div class="col-md-6 text-right" style="text-align:right" >
+                                                <select class="form-control" style="margin-left:60%;width:30%;" ng-model="state" ng-click="doSomething('back.php?category='+state)">
+                                                    <option value="Mississippi">1</option>
+                                                    <option value="Illinois">2</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <table class="table">
+                                                <tr>
+                                                    <th>Bill ID</th>
+                                                    <th>Bill Type</th>
+                                                    <th>Chamber</th>
+                                                    <th>Introduced</th>
+                                                    <th>Sponsor</th>
+                                                    <th>View Details</th>
+                                                </tr>
+                                                <tr ng-repeat="x in billitems">
+                                                    <td ng-bind="x.bill_id.toUpperCase()"></td>
+                                                    <td ng-bind="x.bill_type.toUpperCase()"></td>
+                                                    <td ng-if="x.chamber == 'house'"><ul class="list-inline"><li><img src="http://cs-server.usc.edu:45678/hw/hw8/images/h.png" class="img-responsive" style="width:20px;height:auto"></li><li>House</li></ul></td>
+                                                    <td ng-if="x.chamber != 'house'"><ul class="list-inline"><li><img src="http://cs-server.usc.edu:45678/hw/hw8/images/s.svg" class="img-responsive" style="width:20px;height:auto"></li><li>Senate</li></ul></td>
+                                                    <td ng-bind="x.introduced_on"></td>
+                                                    <td>{{ x.sponsor.title }},{{ x.sponsor.last_name }},{{ x.sponsor.first_name }}</td>
+                                                    <td ><a href="#myCarouselbill"  data-slide="next" ng-click="detail_part2('back.php?detail=2&billid='+x.bill_id)" >dfdaffaf</a></td>
+                                                </tr>
+                                            </table>
+                                            <nav>
+                                                <ul class="pagination">
+                                                    <li>
+                                                    <a ng-click="Previous()">
+                                                        <span>上一页</span>
+                                                    </a>
+                                                    </li>
+                                                    <li ng-repeat="page in pageList" ng-class="{active: isActivePage(page)}" >
+                                                    <a ng-click="selectPage(page)" >{{ page }}</a>
+                                                    </li>
+                                                    <li>
+                                                    <a ng-click="Next()">
+                                                        <span>下一页</span>
+                                                    </a>
+                                                    </li>
+                                                </ul>
+                                            </nav>					
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel panel-default"  >
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <a  href="#myCarouselbill" data-slide="prev" class="btn" style="background-color:white;border-color: #ccc;margin:3px;color:black">
+                                                        <span class="glyphicon glyphicon-chevron-left"></span> 
+                                                    </a>
+                                                    Details
+                                                </div>
+                                                <div class="col-md-6 text-right">
+                                                    <a  class="btn" style="background-color:white;border-color: #ccc;margin:3px;color:black;">
+                                                      <span class="glyphicon glyphicon-star-empty"></span> 
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <table class="table">
+                                                            <tr >
+                                                                <th width="15%" >Bill ID</th>
+                                                                <th width="85%" ng-bind="data_detail2[0].bill_id"></th>
+                                                            </tr>
+                                                            <tr >
+                                                                <th >Bill Type</th>
+                                                                <th ng-bind="data_detail2[0].bill_type"></th>
+                                                            </tr>
+                                                            <tr >
+                                                                <th>Sponsor</th>
+                                                                <th>{{ data_detail2[0].sponsor.title }},{{ data_detail2[0].sponsor.last_name }},{{data_detail2[0].sponsor.first_name }}</th>
+                                                            </tr>
+                                                            <tr >
+                                                                <th>Chamber</th>
+                                                                <th ng-bind="data_detail2[0].chamber"></th>
+                                                            </tr>
+                                                            <tr >
+                                                                <th>Status</th>
+                                                                <th ng-if="data_detail2[0].history.active == true">ACTIVE</th>
+                                                                <th ng-if="data_detail2[0].history.active == false">NEW</th>
+                                                            </tr>
+                                                            <tr >
+                                                                <th>Introduced On</th>
+                                                                <th ng-bind="data_detail2[0].introduced_on"></th>
+                                                            </tr>
+                                                            <tr >
+                                                                <th>Congress URL</th>
+                                                                <th ><a href="{{data_detail2[0].urls.congress}}" target="_blank">URL</a></th>
+                                                            </tr>
+                                                            <tr >
+                                                                <th>Version Status</th>
+                                                                <th ng-bind="data_detail2[0].last_version.version_name"></th>
+                                                            </tr>
+                                                            <tr >
+                                                                <th>Bill URL</th>
+                                                                <th><a href="{{data_detail2[0].last_version.urls.pdf}}" target="_blank">URL</a></th>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                           <object classid="clsid:CA8A9780-280D-11CF-A24D-444553540000" width="100%" height="800px" border="0">  
+                                                                <param name="_Version" value="65539">  
+                                                                <param name="_ExtentX" value="20108">  
+                                                                <param name="_ExtentY" value="10866">  
+                                                                <param name="_StockProps" value="0">  
+                                                                <param name="SRC" value="{{data_detail2[0].last_version.urls.pdf}}">  
+                                                                <object data="{{data_detail2[0].last_version.urls.pdf}}" type="application/pdf" width="100%" height="800px">   
+                                                                </object>  
+                                                            </object>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- bill end -->
+        </div>
 <script>
 
     (function() {
 
         var app = angular.module('myApp', []);
-        app.controller('FilesController', function ($scope, $http){
+        app.controller('FilesController', function ($scope, $sce, $http){
             $scope.files = [];
-            $scope.flag = false;
+            $scope.flag1 = false;
+            $scope.flag2 = true;
             //$scope.title = new array(); 
             $scope.doSomething = function(requestString){
-            $http.get(requestString).then(function (response) {
-            //数据源
-            $scope.data = response.data.results;
-            //分页总数
-            $scope.pageSize = 10;
-            $scope.pages = Math.ceil($scope.data.length / $scope.pageSize); //分页数
-            $scope.newPages = $scope.pages > 10 ? 10 : $scope.pages;
-            $scope.pageList = [];
-            $scope.selPage = 1;
-            //设置表格数据源(分页)
-            $scope.setData = function () {
-                $scope.items = $scope.data.slice(($scope.pageSize * ($scope.selPage - 1)), ($scope.selPage * $scope.pageSize));//通过当前页数筛选出表格当前显示数据
-            }
-            $scope.items = $scope.data.slice(0, $scope.pageSize);
-            
-            //分页要repeat的数组
-            for (var i = 0; i < $scope.newPages; i++) {
-                $scope.pageList.push(i + 1);
-            }
-            //打印当前选中页索引
-            $scope.selectPage = function (page) {
-                //不能小于1大于最大
-                if (page < 1 || page > $scope.pages) return;
-                //最多显示分页数5
-                if (page > 2) {
-                    //因为只显示5个页数，大于2页开始分页转换
-                    var newpageList = [];
-                    for (var i = (page - 3) ; i < ((page + 2) > $scope.pages ? $scope.pages : (page + 2)) ; i++) {
-                        newpageList.push(i + 1);
+                $scope.flag1 = false;
+                $scope.flag2 = true;
+                $http.get(requestString).then(function (response) {
+                    //数据源
+                    $scope.data = response.data.results;
+                    //分页总数
+                    $scope.pageSize = 10;
+                    $scope.pages = Math.ceil($scope.data.length / $scope.pageSize); //分页数
+                    $scope.newPages = $scope.pages > 10 ? 10 : $scope.pages;
+                    $scope.pageList = [];
+                    $scope.selPage = 1;
+                    //设置表格数据源(分页)
+                    $scope.setData = function () {
+                        $scope.items = $scope.data.slice(($scope.pageSize * ($scope.selPage - 1)), ($scope.selPage * $scope.pageSize));//通过当前页数筛选出表格当前显示数据
                     }
-                    $scope.pageList = newpageList;
-                }
-                $scope.selPage = page;
-                $scope.setData();
-                $scope.isActivePage(page);
-                console.log("选择的页：" + page);
-            };
-            //设置当前选中页样式
-            $scope.isActivePage = function (page) {
-                return $scope.selPage == page;
-            };
-            //上一页
-            $scope.Previous = function () {
-                $scope.selectPage($scope.selPage - 1);
-            }
-            //下一页
-            $scope.Next = function () {
-                $scope.selectPage($scope.selPage + 1);
-            };
-        });
+                    $scope.items = $scope.data.slice(0, $scope.pageSize);
+
+                    //分页要repeat的数组
+                    for (var i = 0; i < $scope.newPages; i++) {
+                        $scope.pageList.push(i + 1);
+                    }
+                    //打印当前选中页索引
+                    $scope.selectPage = function (page) {
+                        //不能小于1大于最大
+                        if (page < 1 || page > $scope.pages) return;
+                        //最多显示分页数5
+                        if (page > 2) {
+                            //因为只显示5个页数，大于2页开始分页转换
+                            var newpageList = [];
+                            for (var i = (page - 3) ; i < ((page + 2) > $scope.pages ? $scope.pages : (page + 2)) ; i++) {
+                                newpageList.push(i + 1);
+                            }
+                            $scope.pageList = newpageList;
+                        }
+                        $scope.selPage = page;
+                        $scope.setData();
+                        $scope.isActivePage(page);
+                        console.log("选择的页：" + page);
+                    };
+                    //设置当前选中页样式
+                    $scope.isActivePage = function (page) {
+                        return $scope.selPage == page;
+                    };
+                    //上一页
+                    $scope.Previous = function () {
+                        $scope.selectPage($scope.selPage - 1);
+                    }
+                    //下一页
+                    $scope.Next = function () {
+                        $scope.selectPage($scope.selPage + 1);
+                    };
+                    });
             }
             $scope.detail_part1 = function(requestString){
                 $http.get(requestString).then(function (response) {
@@ -526,24 +744,83 @@
                 
                 
                 });
-                
-            
-            
-            
-            
             }
+            
             $scope.doSomething('back.php?category=1');
             /*start billing*/
-            
+            $scope.dobill= function(requestString){
+                $scope.flag1 = true;
+                $scope.flag2 = false;
+                $http.get(requestString).then(function (response) {
+                    //数据源
+                    $scope.data = response.data.results;
+                    //分页总数
+                    $scope.pageSize = 10;
+                    $scope.pages = Math.ceil($scope.data.length / $scope.pageSize); //分页数
+                    $scope.newPages = $scope.pages > 10 ? 10 : $scope.pages;
+                    $scope.pageList = [];
+                    $scope.selPage = 1;
+                    //设置表格数据源(分页)
+                    $scope.setData = function () {
+                        $scope.billitems = $scope.data.slice(($scope.pageSize * ($scope.selPage - 1)), ($scope.selPage * $scope.pageSize));//通过当前页数筛选出表格当前显示数据
+                    }
+                    $scope.billitems = $scope.data.slice(0, $scope.pageSize);
+
+                    //分页要repeat的数组
+                    for (var i = 0; i < $scope.newPages; i++) {
+                        $scope.pageList.push(i + 1);
+                    }
+                    //打印当前选中页索引
+                    $scope.selectPage = function (page) {
+                        //不能小于1大于最大
+                        if (page < 1 || page > $scope.pages) return;
+                        //最多显示分页数5
+                        if (page > 2) {
+                            //因为只显示5个页数，大于2页开始分页转换
+                            var newpageList = [];
+                            for (var i = (page - 3) ; i < ((page + 2) > $scope.pages ? $scope.pages : (page + 2)) ; i++) {
+                                newpageList.push(i + 1);
+                            }
+                            $scope.pageList = newpageList;
+                        }
+                        $scope.selPage = page;
+                        $scope.setData();
+                        $scope.isActivePage(page);
+                        console.log("选择的页：" + page);
+                    };
+                    //设置当前选中页样式
+                    $scope.isActivePage = function (page) {
+                        return $scope.selPage == page;
+                    };
+                    //上一页
+                    $scope.Previous = function () {
+                        $scope.selectPage($scope.selPage - 1);
+                    }
+                    //下一页
+                    $scope.Next = function () {
+                        $scope.selectPage($scope.selPage + 1);
+                    };
+                    });
+            }
+            $scope.detail_part2 = function(requestString){
+                $http.get(requestString).then(function (response) {
+                    $scope.data_detail2 = response.data.results;                
+                });
+            }
+            /*end bill*/
         });          
     })();
 
 </script>
 <script>
     $('#myCarousel').carousel({
-pause: true,
-interval: false
-})
+    pause: true,
+    interval: false
+    })
+    $('#myCarouselbill').carousel({
+    pause: true,
+    interval: false
+    })
 </script>
 </body>
 </html>

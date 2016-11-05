@@ -2,6 +2,8 @@
 $category = $_GET["category"];
 $detail = $_GET["detail"];
 $bioguide_id = $_GET["bioguide_id"];
+$billid = $_GET["billid"];
+$bill = $_GET["bill"];
 if($category == '1' )
 {
    $url='https://congress.api.sunlightfoundation.com/legislators?fields=party,chamber,district,state,bioguide_id,last_name,first_name&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';
@@ -24,7 +26,7 @@ else if(!empty($category))
     $html=file_get_contents($url);
     echo $html;
 }
-if($detail_part1 = 1&&$bioguide_id != '')
+if($detail == 1&&$bioguide_id != '')
 {
     
     $url='https://congress.api.sunlightfoundation.com/legislators?fields=bioguide_id,title,first_name,last_name,oc_email,chamber,phone,party,term_start,term_end,office,state_name,fax,birthday,twitter_id,facebook_id,contact_form&bioguide_id='.$bioguide_id.'&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';
@@ -82,17 +84,21 @@ if($detail_part1 = 1&&$bioguide_id != '')
     $res = json_encode($array1, true);
     echo $res;
     #var_dump($array1['results'][0]);
-    
 
-    
-    
-
-    
-    //echo $html;
-//echo '{"results":[{"name":3,"city":"adgdefe"},{"name":5,"city":"22222222"},{"name":6,"city":"a1111111"}]}';
+}else if($detail == 2 && $billid != '')
+{
+    $url='https://congress.api.sunlightfoundation.com/bills?fields=bill_id,chamber,bill_type,sponsor,urls,last_version,history,introduced_on&bill_id='.$billid.'&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';
+    $html=file_get_contents($url);
+    echo $html;
 
 }
 
+if($bill == 'true' || $bill == 'false' )
+{
+    $url='https://congress.api.sunlightfoundation.com/bills?fields=bill_id,chamber,bill_type,sponsor,introduced_on&history.active='.$bill.'&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';
+    $html=file_get_contents($url);
+    echo $html;
+}
 
 //if($flag ==1){
 //$list=array("name"=>"wang","sex"=>"man","tel"=>"123","email"=>"xxx@126.com"); 
