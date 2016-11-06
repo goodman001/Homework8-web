@@ -7,11 +7,14 @@ $billid = $_GET["billid"];
 $bill = $_GET["bill"];
 $com =  $_GET["com"];
 $searchflag = $_GET["searchflag"];
+$fav = $_GET["fav"];
+$content = $_GET["content"];
 if($category == '1' )
 {
    $url='https://congress.api.sunlightfoundation.com/legislators?fields=party,chamber,district,state,bioguide_id,last_name,first_name&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';
    $html=file_get_contents($url); 
    echo $html;
+   exit;
 }else if($category =='house')
 {
     if($searchflag !="")
@@ -23,6 +26,7 @@ if($category == '1' )
     }
     $html=file_get_contents($url);
     echo $html;
+    exit;
 }else if($category =='senate')
 {
     if($searchflag !="")
@@ -33,12 +37,14 @@ if($category == '1' )
     $url='https://congress.api.sunlightfoundation.com/legislators?fields=party,chamber,district,state,bioguide_id,last_name,first_name&chamber='.$category.'&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';}
     $html=file_get_contents($url);
     echo $html;
+    exit;
 }
 else if(!empty($category))
 {
     $url='https://congress.api.sunlightfoundation.com/legislators?fields=party,chamber,district,state,bioguide_id,last_name,first_name&state_name='.$category.'&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';
     $html=file_get_contents($url);
     echo $html;
+    exit;
 }
 if($detail == 1&&$bioguide_id != '')
 {
@@ -97,6 +103,7 @@ if($detail == 1&&$bioguide_id != '')
     $array1['results'][0]['committee'] = $arrcom;
     $res = json_encode($array1, true);
     echo $res;
+    exit;
     #var_dump($array1['results'][0]);
 
 }else if($detail == 2 && $billid != '')
@@ -104,6 +111,7 @@ if($detail == 1&&$bioguide_id != '')
     $url='https://congress.api.sunlightfoundation.com/bills?fields=bill_id,chamber,bill_type,sponsor,urls,last_version,history,introduced_on&bill_id='.$billid.'&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';
     $html=file_get_contents($url);
     echo $html;
+    exit;
 
 }
 
@@ -119,6 +127,7 @@ if($bill == 'true' || $bill == 'false' )
     }
     $html=file_get_contents($url);
     echo $html;
+    exit;
 }
 if($com == 'house')
 {
@@ -130,6 +139,7 @@ if($com == 'house')
     }
     $html=file_get_contents($url);
     echo $html;
+    exit;
 }else if($com != "")
 {
    if($searchflag !="")
@@ -140,7 +150,87 @@ if($com == 'house')
     }
    $html=file_get_contents($url);
    echo $html;
- 
+   exit;
+}
+/*fav*/
+if(empty($content))
+{
+   echo '{"results":[],"count":0,"page":{"count":0,"per_page":20,"page":1}}';
+   exit;
+}
+else
+{
+   $pieces = explode("$$", $content);
+   //echo $pieces[1];
+   //print_r($pieces); 
+   $tmp = [];
+   $end = [];
+   switch ($fav)
+   {
+      case "bioguide":
+        $j=0;
+        for($i=1;$i<count($pieces);$i++){ 
+          $html= "";
+          //echo $value;
+          $url='https://congress.api.sunlightfoundation.com/legislators?fields=bioguide_id,first_name,last_name,oc_email,chamber,party,state_name&bioguide_id='.$pieces[$i].'&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';
+          $html=file_get_contents($url);
+          //echo $html."</br>";
+          $tmp = json_decode($html, true);
+          if($j==0)
+          {
+             $end=$tmp;
+          }else{
+             $end['results'][$j]=$tmp['results'][0];
+          }
+          $j = $j+1;
+        }
+        //var_dump($end['results']); 
+        $res = json_encode($end, true);
+        echo $res;
+        break;  
+      case "bill":
+        $j=0;
+        for($i=1;$i<count($pieces);$i++){
+          $html= "";
+          //echo $value;
+          $url='https://congress.api.sunlightfoundation.com/bills?fields=bill_id,chamber,bill_type,official_title,sponsor,introduced_on&bill_id='.$pieces[$i].'&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';
+          $html=file_get_contents($url);
+          //echo $html."</br>";
+          $tmp = json_decode($html, true);
+          if($j==0)
+          {
+             $end=$tmp;
+          }else{
+             $end['results'][$j]=$tmp['results'][0];
+          }
+          $j = $j+1;
+        }
+        //var_dump($end['results']); 
+        $res = json_encode($end, true);
+        echo $res;
+        break;
+      default://committee
+        $j=0;
+        for($i=1;$i<count($pieces);$i++){
+          $html= "";
+          //echo $value;
+          $url='https://congress.api.sunlightfoundation.com/committees?fields=chamber,committee_id,name,parent_committee_id,subcommittee&committee_id='.$pieces[$i].'&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';
+          $html=file_get_contents($url);
+          //echo $html."</br>";
+          $tmp = json_decode($html, true);
+          if($j==0)
+          {
+             $end=$tmp;
+          }else{
+             $end['results'][$j]=$tmp['results'][0];
+          }
+          $j = $j+1;
+        }
+        //var_dump($end['results']); 
+        $res = json_encode($end, true);
+        echo $res;
+
+  }
 }
 
 //if($flag ==1){
