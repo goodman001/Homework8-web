@@ -6,16 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="favicon.ico" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="css/default.css" rel="stylesheet" type="text/css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
-    
-    <!--[if lt IE 9]>
-      <script src="js/bootstrap/html5shiv.min.js"></script>
-      <script src="js/bootstrap/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body ng-controller="FilesController">
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -56,14 +51,14 @@
     <div class="container-fluid all" >
         <div class="sidebar">
             <ul class="nav ">
-                <li class="active"><a ng-click="doSomething('back.php?category=1')" >Legislators</a></li>
-                <li><a ng-click="dobill('back.php?bill=true')" >Bills</a></li>
-                <li><a href="message.html">Committees</a></li>
-                <li><a href="ui.html">Favorites</a></li>
+                <li class="active"><a ng-click="doSomething('back.php?category=1')" ><i class="fa fa-user"></i><label>Legislators</label></a></li>
+                <li><a ng-click="dobill('back.php?bill=true')" ><i class="fa fa-file-o"></i><label>Bills</label></a></li>
+                <li><a ng-click="doCom('back.php?com=house')" ><i class="fa fa-sign-in"></i><label>Committees</label></a></li>
+                <li><a href="ui.html"><i class="fa fa-star"></i><label>Favorites</label></a></li>
             </ul>
         </div>
         <div class="maincontent" ng-hide="flag1" class="jumbotron">
-		<h2>Legislators</h2>
+		<h2> Legislators</h2>
 		<div class="thumbnail">
 			<div id="myCarousel" class="carousel slide">
 				<div class="carousel-inner">
@@ -74,25 +69,12 @@
 							</li>
 							<li><a href="#house" data-toggle="tab" ng-click="doSomething('back.php?category=house')">House</a></li>
 							<li><a href="#senate" data-toggle="tab" ng-click="doSomething('back.php?category=senate')">Senate</a></li>
-							<li class="dropdown">
-								<a href="#" id="myTabDrop1" class="dropdown-toggle" 
-								   data-toggle="dropdown">Java <b class="caret"></b>
-								</a>
-								<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
-									<li><a href="#jmeter" tabindex="-1" data-toggle="tab">
-										jmeter</a>
-									</li>
-									<li><a href="#ejb" tabindex="-1" data-toggle="tab">
-										ejb</a>
-									</li>
-								</ul>
-							</li>
 						</ul>
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane fade in active" id="state">
                                 <div class="panel panel-default" style="margin:10px;">
                                     <div class="panel-heading" style="height:60px;">
-                                        <div class="col-md-6">Legislators by State
+                                        <div class="col-md-6"><h4>Legislators by State</h4>
                                         </div>
                                         <div class="col-md-6 text-right" style="text-align:right" >
                                             <select class="form-control" style="margin-left:60%;width:30%;" ng-model="state" ng-click="doSomething('back.php?category='+state)">
@@ -120,7 +102,7 @@
                                                 <td ng-if="!x.district">N.A</td>
                                                 <td ng-if="x.district">{{x.district}}</td>
                                                 <td ng-bind="x.state"></td>
-                                                <td ><a href="#myCarousel"  data-slide="next" ng-click="detail_part1('back.php?detail=1&bioguide_id='+x.bioguide_id)" >dfdaffaf</a></td>
+                                                <td ><a href="#myCarousel"  data-slide="next" ng-click="detail_part1('back.php?detail=1&bioguide_id='+x.bioguide_id)"  class="btn btn-primary">View Details</a></td>
                                             </tr>
                                         </table>
                                         <nav>
@@ -149,10 +131,17 @@
 							<div class="tab-pane fade" id="house">
 								<div class="panel panel-default" style="margin:10px;">
                                     <div class="panel-heading" style="height:60px;">
-                                        <div class="col-md-6">Legislators by House
+                                        <div class="col-md-6"><h4>Legislators by House</h4>
                                         </div>
-                                        <div class="col-md-6 text-right" style="text-align:right" >
-
+                                        <div class="col-md-6 text-right" style="" >
+                                            <div class="input-group text-right" style="width:50%;margin-left:20%">
+                                                <input type="text" class="form-control" ng-model="bioguide" value="">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" type="button" ng-click="doSomething('back.php?category=house&searchflag=house')">
+                                                        search
+                                                    </button>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="panel-body">
@@ -174,7 +163,7 @@
                                                 <td ng-if="!x.district">N.A</td>
                                                 <td ng-if="x.district">{{x.district}}</td>
                                                 <td ng-bind="x.state"></td>
-                                                <td ><a href="#myCarousel"  data-slide="next" ng-click="detail_part1('back.php?detail=1&bioguide_id='+x.bioguide_id)" >dfdaffaf</a></td>
+                                                <td ><a href="#myCarousel"  data-slide="next" ng-click="detail_part1('back.php?detail=1&bioguide_id='+x.bioguide_id)" class="btn btn-primary" >View Details</a></td>
                                             </tr>
                                         </table>
                                         <nav>
@@ -202,10 +191,17 @@
 							<div class="tab-pane fade" id="senate">
 								<div class="panel panel-default" style="margin:10px;">
                                     <div class="panel-heading" style="height:60px;">
-                                        <div class="col-md-6">Legislators by House
+                                        <div class="col-md-6"><h4>Legislators by House</h4>
                                         </div>
                                         <div class="col-md-6 text-right" style="text-align:right" >
-
+                                            <div class="input-group text-right" style="width:50%;margin-left:20%">
+                                                <input type="text" class="form-control" ng-model="bioguide" value="">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" type="button" ng-click="doSomething('back.php?category=senate&searchflag=senate')">
+                                                        search
+                                                    </button>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="panel-body">
@@ -227,7 +223,7 @@
                                                 <td ng-if="!x.district">N.A</td>
                                                 <td ng-if="x.district">{{x.district}}</td>
                                                 <td ng-bind="x.state"></td>
-                                                <td ><a href="#myCarousel"  data-slide="next" ng-click="detail_part1('back.php?detail=1&bioguide_id='+x.bioguide_id)" >dfdaffaf</a></td>
+                                                <td ><a href="#myCarousel"  data-slide="next" ng-click="detail_part1('back.php?detail=1&bioguide_id='+x.bioguide_id)" class="btn btn-primary" >View Details</a></td>
                                             </tr>
                                         </table>
                                         <nav>
@@ -266,49 +262,44 @@
                                     <div class="panel panel-default"  >
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <a  href="#myCarousel" data-slide="prev" class="btn" style="background-color:white;border-color: #ccc;margin:3px;color:black">
+                                                <a ng-click="changecolor('bioguide'+data_detail1[0].bioguide_id)" href="#myCarousel" data-slide="prev" class="btn" style="background-color:white;border-color: #ccc;margin:3px;color:black">
                                                     <span class="glyphicon glyphicon-chevron-left"></span> 
                                                 </a>
                                                 Details
                                             </div>
                                             <div class="col-md-6 text-right">
-                                                <a  class="btn" style="background-color:white;border-color: #ccc;margin:3px;color:black;">
-                                                  <span class="glyphicon glyphicon-star-empty"></span> 
-                                                </a>
+                                                <a ng-click="favorite(data_detail1[0].bioguide_id,'bioguide')" class="btn btn-default" ><span class="fa fa-star bioguide{{data_detail1[0].bioguide_id}}"></span> </a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="panel-body">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                            <table class="table table-condensed">
-                                                                <tr >
-                                                                    <td class="text-center" rowspan="5" colspan="2" width="50%">
-                                                                        <img src="https://theunitedstates.io/images/congress/225x275/{{data_detail1[0].bioguide_id}}.jpg">
-                                                                    </td>
-                                                                    <td width="50%">
-                                                                        {{ data_detail1[0].title }},{{ data_detail1[0].last_name }},{{ data_detail1[0].first_name }}
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <a href="http://{{data_detail1[0].oc_email}}" target="_blank">{{data_detail1[0].oc_email}}</a>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        Chamber: {{ data_detail1[0].chamber }}
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td ng-if="data_detail1[0].party == 'D'"><ul class="list-inline"><li><img src="http://cs-server.usc.edu:45678/hw/hw8/images/d.png" class="img-responsive" style="width:20px;height:auto"></li><li>Democratic</li></ul></td>
-                                                                    <td ng-if="data_detail1[0].party == 'R'"><ul class="list-inline"><li><img src="http://cs-server.usc.edu:45678/hw/hw8/images/r.png" class="img-responsive" style="width:20px;height:auto"></li><li>Republican</li></ul></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        Contact: {{ data_detail1[0].phone }}
-                                                                    </td>
-                                                                </tr>
+                                                    <div class="col-md-6 text-center">
+                                                        <img src="https://theunitedstates.io/images/congress/225x275/{{data_detail1[0].bioguide_id}}.jpg">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <table class="table">
+                                                            <tr>
+                                                                <td>{{ data_detail1[0].title }},{{ data_detail1[0].last_name }},{{ data_detail1[0].first_name }}</td>
+                                                            </tr >
+                                                            <tr >
+                                                                <td><a href="http://{{data_detail1[0].oc_email}}" target="_blank">{{data_detail1[0].oc_email}}</a></td>
+                                                            </tr >
+                                                            <tr >
+                                                                <td>Chamber: {{ data_detail1[0].chamber }}</td>
+                                                            </tr >
+                                                            <tr >
+                                                                <td>Contact: {{ data_detail1[0].phone }}</td>
+                                                            </tr >
+                                                            <tr >
+                                                                <td ng-if="data_detail1[0].party == 'D'"><ul class="list-inline"><li><img src="http://cs-server.usc.edu:45678/hw/hw8/images/d.png" class="img-responsive" style="width:20px;height:auto"></li><li>Democratic</li></ul></td>
+                                                                <td ng-if="data_detail1[0].party == 'R'"><ul class="list-inline"><li><img src="http://cs-server.usc.edu:45678/hw/hw8/images/r.png" class="img-responsive" style="width:20px;height:auto"></li><li>Republican</li></ul></td>
+                                                            </tr >
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <table class="table">
                                                                 <tr>
                                                                     <td width="25%">
                                                                         Start Term
@@ -384,6 +375,8 @@
                                                                 </tr>
 
                                                             </table>
+                                                    </div>
+                                                            
                                                 </div>
                                                 <div class="col-md-6">
                                                     <h4>Committees</h4>
@@ -473,13 +466,17 @@
                                 <div class="tab-pane fade in active" id="billactive">
                                     <div class="panel panel-default" style="margin:10px;">
                                         <div class="panel-heading" style="height:60px;">
-                                            <div class="col-md-6">Legislators by State
+                                            <div class="col-md-6"><h4>Active Bills</h4>
                                             </div>
                                             <div class="col-md-6 text-right" style="text-align:right" >
-                                                <select class="form-control" style="margin-left:60%;width:30%;" ng-model="state" ng-click="doSomething('back.php?category='+state)">
-                                                    <option value="Mississippi">1</option>
-                                                    <option value="Illinois">2</option>
-                                                </select>
+                                                <div class="input-group text-right" style="width:50%;margin-left:20%">
+                                                    <input type="text" class="form-control" ng-model="bill" value="">
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-default" type="button" ng-click="dobill('back.php?bill=true&searchflag=true')">
+                                                            search
+                                                        </button>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="panel-body">
@@ -499,7 +496,7 @@
                                                     <td ng-if="x.chamber != 'house'"><ul class="list-inline"><li><img src="http://cs-server.usc.edu:45678/hw/hw8/images/s.svg" class="img-responsive" style="width:20px;height:auto"></li><li>Senate</li></ul></td>
                                                     <td ng-bind="x.introduced_on"></td>
                                                     <td>{{ x.sponsor.title }},{{ x.sponsor.last_name }},{{ x.sponsor.first_name }}</td>
-                                                    <td ><a href="#myCarouselbill"  data-slide="next" ng-click="detail_part2('back.php?detail=2&billid='+x.bill_id)" >dfdaffaf</a></td>
+                                                    <td ><a href="#myCarouselbill"  data-slide="next" ng-click="detail_part2('back.php?detail=2&billid='+x.bill_id)" class="btn btn-primary">View Details</a></td>
                                                 </tr>
                                             </table>
                                             <nav>
@@ -526,16 +523,19 @@
                                     
                                 </div>
                                 <div class="tab-pane fade" id="billnew">
-                                    billnew
                                     <div class="panel panel-default" style="margin:10px;">
                                         <div class="panel-heading" style="height:60px;">
-                                            <div class="col-md-6">Legislators by State
+                                            <div class="col-md-6"><h4>New Bills</h4>
                                             </div>
                                             <div class="col-md-6 text-right" style="text-align:right" >
-                                                <select class="form-control" style="margin-left:60%;width:30%;" ng-model="state" ng-click="doSomething('back.php?category='+state)">
-                                                    <option value="Mississippi">1</option>
-                                                    <option value="Illinois">2</option>
-                                                </select>
+                                                <div class="input-group text-right" style="width:50%;margin-left:20%">
+                                                    <input type="text" class="form-control" ng-model="bill" value="">
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-default" type="button" ng-click="dobill('back.php?bill=false&searchflag=false')">
+                                                            search
+                                                        </button>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="panel-body">
@@ -555,7 +555,7 @@
                                                     <td ng-if="x.chamber != 'house'"><ul class="list-inline"><li><img src="http://cs-server.usc.edu:45678/hw/hw8/images/s.svg" class="img-responsive" style="width:20px;height:auto"></li><li>Senate</li></ul></td>
                                                     <td ng-bind="x.introduced_on"></td>
                                                     <td>{{ x.sponsor.title }},{{ x.sponsor.last_name }},{{ x.sponsor.first_name }}</td>
-                                                    <td ><a href="#myCarouselbill"  data-slide="next" ng-click="detail_part2('back.php?detail=2&billid='+x.bill_id)" >dfdaffaf</a></td>
+                                                    <td ><a href="#myCarouselbill"  data-slide="next" ng-click="detail_part2('back.php?detail=2&billid='+x.bill_id)" class="btn btn-primary">View Details</a></td>
                                                 </tr>
                                             </table>
                                             <nav>
@@ -595,9 +595,7 @@
                                                     Details
                                                 </div>
                                                 <div class="col-md-6 text-right">
-                                                    <a  class="btn" style="background-color:white;border-color: #ccc;margin:3px;color:black;">
-                                                      <span class="glyphicon glyphicon-star-empty"></span> 
-                                                    </a>
+                                                    <a ng-click="favorite(data_detail2[0].bill_id,'bill')" class="btn btn-default" ><span class="fa fa-star bill{{data_detail2[0].bill_id}}"></span> </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -673,6 +671,189 @@
             </div>
             <!-- bill end -->
         </div>
+        <div class="maincontent" ng-hide="flag3" class="jumbotron">
+            <h2>Committees</h2>
+            <div class="thumbnail">	
+                <div class="item active">
+                    <ul id="myTabcom" class="nav nav-tabs">
+                        <li class="active"><a href="#housecom" data-toggle="tab" ng-click="doCom('back.php?com=house')">
+                            House</a>
+                        </li>
+                        <li><a href="#senatecom" data-toggle="tab" ng-click="doCom('back.php?com=senate')">Senate</a></li>
+                        <li><a href="#joincom" data-toggle="tab" ng-click="doCom('back.php?com=joint')">Joint</a></li>
+                    </ul>
+                    <div id="myTabcomContent" class="tab-content">
+                        <div class="tab-pane fade in active" id="housecom">
+                            <div class="panel panel-default" style="margin:10px;">
+                                <div class="panel-heading" style="height:60px;">
+                                    <div class="col-md-6"><h4>House</h4>
+                                    </div>
+                                    <div class="col-md-6 text-right" style="text-align:right" >
+                                        <div class="input-group text-right" style="width:50%;margin-left:20%">
+                                            <input type="text" class="form-control" ng-model="com" value="">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="button" ng-click="doCom('back.php?com=house&searchflag=house')">
+                                                    search
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <table class="table">
+                                        <tr>
+                                            <th></th>
+                                            <th>Chamber</th>
+                                            <th>Committee ID</th>
+                                            <th>Name</th>
+                                            <th>Parent Committee</th>
+                                            <th>Contact</th>
+                                            <th>Office</th>
+                                        </tr>
+                                        <tr ng-repeat="x in comitems">
+                                            <td><a ng-click="favorite(x.committee_id,'committee')" class="btn btn-default"><span class="fa fa-star committee{{x.committee_id}}"></span> </a></td>
+                                            <td ng-if="x.chamber == 'house'" ><img src="http://cs-server.usc.edu:45678/hw/hw8/images/h.png" class="img-responsive" style="width:20px;height:auto">{{x.chamber}}</td>
+                                            <td ng-if="x.chamber != 'house'" ><img src="http://cs-server.usc.edu:45678/hw/hw8/images/s.svg" class="img-responsive" style="width:20px;height:auto">{{x.chamber}}</td>
+                                            <td ng-bind="x.committee_id"></td>
+                                            <td ng-bind="x.name"></td>
+                                            <td ng-bind="x.parent_committee_id"></td>
+                                            <td ng-bind="x.phone"></td>
+                                            <td ng-if="!x.office">N.A</td>
+                                            <td ng-if="x.office">{{x.office}}</td>
+                                        </tr>
+                                    </table>
+                                    <nav>
+                                        <ul class="pagination">
+                                            <li>
+                                            <a ng-click="Previous()">
+                                                <span>上一页</span>
+                                            </a>
+                                            </li>
+                                            <li ng-repeat="page in pageList" ng-class="{active: isActivePage(page)}" >
+                                            <a ng-click="selectPage(page)" >{{ page }}</a>
+                                            </li>
+                                            <li>
+                                            <a ng-click="Next()">
+                                                <span>下一页</span>
+                                            </a>
+                                            </li>
+                                        </ul>
+                                    </nav>					
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="senatecom">
+                            <div class="panel panel-default" style="margin:10px;">
+                                <div class="panel-heading" style="height:60px;">
+                                    <div class="col-md-6"><h4>Senate</h4>
+                                    </div>
+                                    <div class="col-md-6 text-right" style="text-align:right" >
+                                        <div class="input-group text-right" style="width:50%;margin-left:20%">
+                                            <input type="text" class="form-control" ng-model="com" value="">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="button" ng-click="doCom('back.php?com=senate&searchflag=senate')">
+                                                    search
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <table class="table">
+                                        <tr>
+                                            <th></th>
+                                            <th>Chamber</th>
+                                            <th>Committee ID</th>
+                                            <th>Name</th>
+                                            <th>Parent Committee</th>
+                                        </tr>
+                                        <tr ng-repeat="x in comitems">
+                                            <td><a ng-click="favorite(x.committee_id,'committee')" class="btn btn-default" ><span class="fa fa-star committee{{x.committee_id}}"></span> </a></td>
+                                            <td ><img src="http://cs-server.usc.edu:45678/hw/hw8/images/s.svg" class="img-responsive" style="width:20px;height:auto">{{x.chamber}}</td>
+                                            <td ng-bind="x.committee_id"></td>
+                                            <td ng-bind="x.name"></td>
+                                            <td ng-bind="x.parent_committee_id"></td>
+                                        </tr>
+                                    </table>
+                                    <nav>
+                                        <ul class="pagination">
+                                            <li>
+                                            <a ng-click="Previous()">
+                                                <span>上一页</span>
+                                            </a>
+                                            </li>
+                                            <li ng-repeat="page in pageList" ng-class="{active: isActivePage(page)}" >
+                                            <a ng-click="selectPage(page)" >{{ page }}</a>
+                                            </li>
+                                            <li>
+                                            <a ng-click="Next()">
+                                                <span>下一页</span>
+                                            </a>
+                                            </li>
+                                        </ul>
+                                    </nav>					
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="joincom">
+                            <div class="panel panel-default" style="margin:10px;">
+                                <div class="panel-heading" style="height:60px;">
+                                    <div class="col-md-6"><h4>Joint</h4>
+                                    </div>
+                                    <div class="col-md-6 text-right" style="text-align:right" >
+                                        <div class="input-group text-right" style="width:50%;margin-left:20%">
+                                            <input type="text" class="form-control" ng-model="com" value="">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="button" ng-click="doCom('back.php?com=joint&searchflag=joint')">
+                                                    search
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <table class="table">
+                                        <tr>
+                                            <th></th>
+                                            <th>Chamber</th>
+                                            <th>Committee ID</th>
+                                            <th>Name</th>
+                                        </tr>
+                                        <tr ng-repeat="x in comitems">
+                                            <td><a ng-click="favorite(x.committee_id,'committee')" class="btn btn-default" ><span  class="fa fa-star committee{{x.committee_id}}"></span> </a></td>
+                                            <td ><img src="http://cs-server.usc.edu:45678/hw/hw8/images/s.svg" class="img-responsive" style="width:20px;height:auto">{{x.chamber}}</td>
+                                            <td ng-bind="x.committee_id"></td>
+                                            <td ng-bind="x.name"></td>
+                                        </tr>
+                                    </table>
+                                    <nav>
+                                        <ul class="pagination">
+                                            <li>
+                                            <a ng-click="Previous()">
+                                                <span>上一页</span>
+                                            </a>
+                                            </li>
+                                            <li ng-repeat="page in pageList" ng-class="{active: isActivePage(page)}" >
+                                            <a ng-click="selectPage(page)" >{{ page }}</a>
+                                            </li>
+                                            <li>
+                                            <a ng-click="Next()">
+                                                <span>下一页</span>
+                                            </a>
+                                            </li>
+                                        </ul>
+                                    </nav>					
+                                </div>
+                            </div>	
+                        </div>
+                    </div>
+                </div>	
+            </div>	
+        </div>
+        
+        
 <script>
 
     (function() {
@@ -682,10 +863,32 @@
             $scope.files = [];
             $scope.flag1 = false;
             $scope.flag2 = true;
+            $scope.flag3 = true;
             //$scope.title = new array(); 
             $scope.doSomething = function(requestString){
                 $scope.flag1 = false;
                 $scope.flag2 = true;
+                $scope.flag3 = true;
+                var reg = /(([^?&=]+)(?:=([^?&=]*))*)/g;
+                var result = {};
+                var match;
+                var key;
+                var value;
+                while (match = reg.exec(requestString)) {
+                    key = match[2];
+                    value = match[3] || '';
+                    result[key] = decodeURIComponent(value);
+                }
+                if(result['searchflag'] != undefined)
+                {
+                    alert(result['searchflag']);
+                    var invals = $scope.bioguide;
+                    if(invals)
+                    {
+                        //alert("back?category="+result['category']+"&searchflag="+invals);
+                        requestString = "back.php?category="+result['category']+"&searchflag="+invals;
+                    }
+                }
                 $http.get(requestString).then(function (response) {
                     //数据源
                     $scope.data = response.data.results;
@@ -751,6 +954,27 @@
             $scope.dobill= function(requestString){
                 $scope.flag1 = true;
                 $scope.flag2 = false;
+                $scope.flag3 = true;
+                var reg = /(([^?&=]+)(?:=([^?&=]*))*)/g;
+                var result = {};
+                var match;
+                var key;
+                var value;
+                while (match = reg.exec(requestString)) {
+                    key = match[2];
+                    value = match[3] || '';
+                    result[key] = decodeURIComponent(value);
+                }
+                if(result['searchflag'] != undefined)
+                {
+                    alert(result['searchflag']);
+                    var invals = $scope.bill;
+                    if(invals)
+                    {
+                        alert("back?bill="+result['bill']+"&searchflag="+invals);
+                        requestString = "back.php?bill="+result['bill']+"&searchflag="+invals;
+                    }
+                }
                 $http.get(requestString).then(function (response) {
                     //数据源
                     $scope.data = response.data.results;
@@ -808,6 +1032,123 @@
                 });
             }
             /*end bill*/
+            $scope.doCom= function(requestString){
+                $scope.flag1 = true;
+                $scope.flag2 = true;
+                $scope.flag3 = false;
+                var reg = /(([^?&=]+)(?:=([^?&=]*))*)/g;
+                var result = {};
+                var match;
+                var key;
+                var value;
+                while (match = reg.exec(requestString)) {
+                    key = match[2];
+                    value = match[3] || '';
+                    result[key] = decodeURIComponent(value);
+                }
+                if(result['searchflag'] != undefined)
+                {
+                    alert(result['searchflag']);
+                    var invals = $scope.com;
+                    if(invals)
+                    {
+                        alert("back?com="+result['com']+"&searchflag="+invals);
+                        requestString = "back.php?com="+result['com']+"&searchflag="+invals;
+                    }
+                }
+                $http.get(requestString).then(function (response) {
+                    //数据源
+                    $scope.data = response.data.results;
+                    //分页总数
+                    $scope.pageSize = 10;
+                    $scope.pages = Math.ceil($scope.data.length / $scope.pageSize); //分页数
+                    $scope.newPages = $scope.pages > 10 ? 10 : $scope.pages;
+                    $scope.pageList = [];
+                    $scope.selPage = 1;
+                    //设置表格数据源(分页)
+                    $scope.setData = function () {
+                        $scope.comitems = $scope.data.slice(($scope.pageSize * ($scope.selPage - 1)), ($scope.selPage * $scope.pageSize));//通过当前页数筛选出表格当前显示数据
+                    }
+                    $scope.comitems = $scope.data.slice(0, $scope.pageSize);
+
+                    //分页要repeat的数组
+                    for (var i = 0; i < $scope.newPages; i++) {
+                        $scope.pageList.push(i + 1);
+                    }
+                    //打印当前选中页索引
+                    $scope.selectPage = function (page) {
+                        //不能小于1大于最大
+                        if (page < 1 || page > $scope.pages) return;
+                        //最多显示分页数5
+                        if (page > 2) {
+                            //因为只显示5个页数，大于2页开始分页转换
+                            var newpageList = [];
+                            for (var i = (page - 3) ; i < ((page + 2) > $scope.pages ? $scope.pages : (page + 2)) ; i++) {
+                                newpageList.push(i + 1);
+                            }
+                            $scope.pageList = newpageList;
+                        }
+                        $scope.selPage = page;
+                        $scope.setData();
+                        $scope.isActivePage(page);
+                        console.log("选择的页：" + page);
+                    };
+                    //设置当前选中页样式
+                    $scope.isActivePage = function (page) {
+                        return $scope.selPage == page;
+                    };
+                    //上一页
+                    $scope.Previous = function () {
+                        $scope.selectPage($scope.selPage - 1);
+                    }
+                    //下一页
+                    $scope.Next = function () {
+                        $scope.selectPage($scope.selPage + 1);
+                    };
+                    });
+            }
+            $scope.detail_part3 = function(requestString){
+                $http.get(requestString).then(function (response) {
+                    $scope.data_detail3 = response.data.results;                
+                });
+            }
+            /*end commit*/
+            /*favorite*/
+            $scope.favorite = function(requestString,flagString){
+                var tmp="";
+                tmp = localStorage.getItem(flagString);
+                
+                if(("."+flagString+requestString) == 'null' || ($("."+flagString+requestString).attr("class")).search("text-warning") !=-1)
+                {
+                    $("."+flagString+requestString).removeClass("text-warning");
+                    if(tmp != null)
+                    {
+                        localStorage.setItem(flagString,tmp.replace('$$'+requestString,''));
+                    }
+                    
+                }else{
+                    $("."+flagString+requestString).addClass("text-warning");
+                    if(tmp == null)
+                    {
+                        localStorage.setItem(flagString,'$$'+requestString);
+                    }else
+                    {
+                        if(tmp.search(requestString) == -1)
+                        {
+                            localStorage.setItem(flagString,tmp + '$$' + requestString);
+                        }
+                    }
+                }
+               
+                alert(localStorage.getItem(flagString));
+                //alert(flagString);
+            }
+            /*change*/
+            $scope.changecolor = function(requestString){
+                $("."+requestString).removeClass("text-warning");
+            }
+            
+            
         });          
     })();
 
@@ -818,6 +1159,10 @@
     interval: false
     })
     $('#myCarouselbill').carousel({
+    pause: true,
+    interval: false
+    })
+    $('#myCarouselcom').carousel({
     pause: true,
     interval: false
     })

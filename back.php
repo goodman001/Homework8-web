@@ -1,9 +1,12 @@
 <?php
+$searchflag = "";
 $category = $_GET["category"];
 $detail = $_GET["detail"];
 $bioguide_id = $_GET["bioguide_id"];
 $billid = $_GET["billid"];
 $bill = $_GET["bill"];
+$com =  $_GET["com"];
+$searchflag = $_GET["searchflag"];
 if($category == '1' )
 {
    $url='https://congress.api.sunlightfoundation.com/legislators?fields=party,chamber,district,state,bioguide_id,last_name,first_name&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';
@@ -11,12 +14,23 @@ if($category == '1' )
    echo $html;
 }else if($category =='house')
 {
-    $url='https://congress.api.sunlightfoundation.com/legislators?fields=party,chamber,district,state,bioguide_id,last_name,first_name&chamber='.$category.'&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';
+    if($searchflag !="")
+    {
+       $url='https://congress.api.sunlightfoundation.com/legislators?fields=party,chamber,district,state,bioguide_id,last_name,first_name&chamber='.$category.'&query='.$searchflag.'&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';
+    }else
+    {
+     $url='https://congress.api.sunlightfoundation.com/legislators?fields=party,chamber,district,state,bioguide_id,last_name,first_name&chamber='.$category.'&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';
+    }
     $html=file_get_contents($url);
     echo $html;
 }else if($category =='senate')
 {
-    $url='https://congress.api.sunlightfoundation.com/legislators?fields=party,chamber,district,state,bioguide_id,last_name,first_name&chamber='.$category.'&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';
+    if($searchflag !="")
+    {
+       $url='https://congress.api.sunlightfoundation.com/legislators?fields=party,chamber,district,state,bioguide_id,last_name,first_name&chamber='.$category.'&query='.$searchflag.'&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';
+    }
+    else{
+    $url='https://congress.api.sunlightfoundation.com/legislators?fields=party,chamber,district,state,bioguide_id,last_name,first_name&chamber='.$category.'&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';}
     $html=file_get_contents($url);
     echo $html;
 }
@@ -95,9 +109,38 @@ if($detail == 1&&$bioguide_id != '')
 
 if($bill == 'true' || $bill == 'false' )
 {
-    $url='https://congress.api.sunlightfoundation.com/bills?fields=bill_id,chamber,bill_type,sponsor,introduced_on&history.active='.$bill.'&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';
+    if($searchflag !="")
+    {
+       $url='https://congress.api.sunlightfoundation.com/bills/search?fields=bill_id,chamber,bill_type,sponsor,introduced_on&history.active='.$bill.'&query="'.$searchflag.'"&per_page=25&apikey=542bae46d15c4c5c99bb423075fda3a7';
+    }
+    else
+    {
+       $url='https://congress.api.sunlightfoundation.com/bills?fields=bill_id,chamber,bill_type,sponsor,introduced_on&history.active='.$bill.'&per_page=25&apikey=542bae46d15c4c5c99bb423075fda3a7';
+    }
     $html=file_get_contents($url);
     echo $html;
+}
+if($com == 'house')
+{
+    if($searchflag !="")
+    {
+       $url='https://congress.api.sunlightfoundation.com/committees?fields=chamber,committee_id,name,parent_committee_id,phone,office&query='.$searchflag.'&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';
+    }else{
+       $url='https://congress.api.sunlightfoundation.com/committees?fields=chamber,committee_id,name,parent_committee_id,phone,office&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';
+    }
+    $html=file_get_contents($url);
+    echo $html;
+}else if($com != "")
+{
+   if($searchflag !="")
+    {
+       $url='https://congress.api.sunlightfoundation.com/committees?fields=chamber,committee_id,name,parent_committee_id&chamber='.$com.'&query='.$searchflag.'&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';
+    }else{
+        $url='https://congress.api.sunlightfoundation.com/committees?fields=chamber,committee_id,name,parent_committee_id&chamber='.$com.'&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';
+    }
+   $html=file_get_contents($url);
+   echo $html;
+ 
 }
 
 //if($flag ==1){
