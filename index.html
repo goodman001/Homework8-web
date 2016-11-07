@@ -7,10 +7,11 @@
     <link rel="icon" href="favicon.ico" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/default.css" rel="stylesheet" type="text/css" />
+    <link href="default.css" rel="stylesheet" type="text/css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="default.js"></script>
 </head>
 <body ng-controller="FilesController">
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation" >
@@ -19,10 +20,9 @@
                 <span class="fa fa-bars fa-2x" href="#" data-target="#navbar"  ng-click="doHidenav(flagnav)"></span>
             </div>
             <div class="col-sm-11" ng-hide="flagnav">
-                <!--向左对齐-->
                 <ul class="list-inline text-center" style="margin-top:0px">
                     <li class="navs"><img src="http://cs-server.usc.edu:45678/hw/hw8/images/logo.png" /></li>
-                    <li class="navs">Congress Api</li>
+                    <li class="navs"><h3>Congress Api</h3></li>
                 </ul>
 
             </div>
@@ -204,6 +204,11 @@
                                             <nav>
                                                 <ul class="pagination">
                                                     <li>
+                                                        <a ng-click="selectPage(1)" >
+                                                            <span>&nbsp;<<&nbsp;</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
                                                     <a ng-click="Previous()">
                                                         <span>&nbsp;<&nbsp;</span>
                                                     </a>
@@ -215,6 +220,11 @@
                                                     <a ng-click="Next()">
                                                         <span>&nbsp;>&nbsp;</span>
                                                     </a>
+                                                    </li>
+                                                    <li>
+                                                        <a ng-click="selectPage(pages)" >
+                                                            <span>&nbsp;>>&nbsp;</span>
+                                                        </a>
                                                     </li>
                                                 </ul>
                                             </nav>					
@@ -264,6 +274,11 @@
                                             <nav>
                                                 <ul class="pagination">
                                                     <li>
+                                                        <a ng-click="selectPage(1)" >
+                                                            <span>&nbsp;<<&nbsp;</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
                                                     <a ng-click="Previous()">
                                                         <span>&nbsp;<&nbsp;</span>
                                                     </a>
@@ -275,6 +290,11 @@
                                                     <a ng-click="Next()">
                                                         <span>&nbsp;>&nbsp;</span>
                                                     </a>
+                                                    </li>
+                                                    <li>
+                                                        <a ng-click="selectPage(pages)" >
+                                                            <span>&nbsp;>>&nbsp;</span>
+                                                        </a>
                                                     </li>
                                                 </ul>
                                             </nav>					
@@ -537,6 +557,11 @@
                                                 <nav>
                                                     <ul class="pagination">
                                                         <li>
+                                                            <a ng-click="selectPage(1)" >
+                                                                <span>&nbsp;<<&nbsp;</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
                                                         <a ng-click="Previous()">
                                                             <span>&nbsp;<&nbsp;</span>
                                                         </a>
@@ -548,6 +573,11 @@
                                                         <a ng-click="Next()">
                                                             <span>&nbsp;>&nbsp;</span>
                                                         </a>
+                                                        </li>
+                                                        <li>
+                                                            <a ng-click="selectPage(pages)" >
+                                                                <span>&nbsp;>>&nbsp;</span>
+                                                            </a>
                                                         </li>
                                                     </ul>
                                                 </nav>					
@@ -596,6 +626,11 @@
                                                 <nav>
                                                     <ul class="pagination">
                                                         <li>
+                                                            <a ng-click="selectPage(1)" >
+                                                                <span>&nbsp;<<&nbsp;</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
                                                         <a ng-click="Previous()">
                                                             <span>&nbsp;<&nbsp;</span>
                                                         </a>
@@ -607,6 +642,11 @@
                                                         <a ng-click="Next()">
                                                             <span>&nbsp;>&nbsp;</span>
                                                         </a>
+                                                        </li>
+                                                        <li>
+                                                            <a ng-click="selectPage(pages)" >
+                                                                <span>&nbsp;>>&nbsp;</span>
+                                                            </a>
                                                         </li>
                                                     </ul>
                                                 </nav>					
@@ -760,6 +800,11 @@
                                         <nav>
                                             <ul class="pagination">
                                                 <li>
+                                                    <a ng-click="selectPage(1)" >
+                                                        <span>&nbsp;<<&nbsp;</span>
+                                                    </a>
+                                                </li>
+                                                <li>
                                                 <a ng-click="Previous()">
                                                     <span>&nbsp;<&nbsp;</span>
                                                 </a>
@@ -771,6 +816,11 @@
                                                 <a ng-click="Next()">
                                                     <span>&nbsp;>&nbsp;</span>
                                                 </a>
+                                                </li>
+                                                <li>
+                                                    <a ng-click="selectPage(pages)" >
+                                                        <span>&nbsp;>>&nbsp;</span>
+                                                    </a>
                                                 </li>
                                             </ul>
                                         </nav>					
@@ -813,6 +863,11 @@
                                         <nav>
                                             <ul class="pagination">
                                                 <li>
+                                                    <a ng-click="selectPage(1)" >
+                                                        <span>&nbsp;<<&nbsp;</span>
+                                                    </a>
+                                                </li>
+                                                <li>
                                                 <a ng-click="Previous()">
                                                     <span>&nbsp;<&nbsp;</span>
                                                 </a>
@@ -824,6 +879,11 @@
                                                 <a ng-click="Next()">
                                                     <span>&nbsp;>&nbsp;</span>
                                                 </a>
+                                                </li>
+                                                <li>
+                                                    <a ng-click="selectPage(pages)" >
+                                                        <span>&nbsp;>>&nbsp;</span>
+                                                    </a>
                                                 </li>
                                             </ul>
                                         </nav>					
@@ -866,6 +926,11 @@
                                         <nav>
                                             <ul class="pagination">
                                                 <li>
+                                                    <a ng-click="selectPage(1)" >
+                                                        <span>&nbsp;<<&nbsp;</span>
+                                                    </a>
+                                                </li>
+                                                <li>
                                                 <a ng-click="Previous()">
                                                     <span>&nbsp;<&nbsp;</span>
                                                 </a>
@@ -877,6 +942,11 @@
                                                 <a ng-click="Next()">
                                                     <span>&nbsp;>&nbsp;</span>
                                                 </a>
+                                                </li>
+                                                <li>
+                                                    <a ng-click="selectPage(pages)" >
+                                                        <span>&nbsp;>>&nbsp;</span>
+                                                    </a>
                                                 </li>
                                             </ul>
                                         </nav>					
@@ -937,6 +1007,11 @@
                                                 <nav>
                                                     <ul class="pagination">
                                                         <li>
+                                                            <a ng-click="selectPage(1)" >
+                                                                <span>&nbsp;<<&nbsp;</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
                                                         <a ng-click="Previous()">
                                                             <span>&nbsp;<&nbsp;</span>
                                                         </a>
@@ -948,6 +1023,11 @@
                                                         <a ng-click="Next()">
                                                             <span>&nbsp;>&nbsp;</span>
                                                         </a>
+                                                        </li>
+                                                        <li>
+                                                            <a ng-click="selectPage(pages)" >
+                                                                <span>&nbsp;>>&nbsp;</span>
+                                                            </a>
                                                         </li>
                                                     </ul>
                                                 </nav>					
@@ -978,7 +1058,6 @@
                                                         <td>
                                                             <a ng-click="deletesome(x.bill_id,'bill')" class="btn btn-default"><span class="fa fa-trash-o"></span> </a>
                                                         </td>
-                                                        <td ng-bind="x.chamber"></td>
                                                         <td ng-bind="x.bill_id"></td>
                                                         <td ng-bind="x.bill_type"></td>
                                                         <td ng-bind="x.official_title"></td>
@@ -991,6 +1070,11 @@
                                                 <nav>
                                                     <ul class="pagination">
                                                         <li>
+                                                            <a ng-click="selectPage(1)" >
+                                                                <span>&nbsp;<<&nbsp;</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
                                                         <a ng-click="Previous()">
                                                             <span>&nbsp;<&nbsp;</span>
                                                         </a>
@@ -1002,6 +1086,11 @@
                                                         <a ng-click="Next()">
                                                             <span>&nbsp;>&nbsp;</span>
                                                         </a>
+                                                        </li>
+                                                        <li>
+                                                            <a ng-click="selectPage(pages)" >
+                                                                <span>&nbsp;>>&nbsp;</span>
+                                                            </a>
                                                         </li>
                                                     </ul>
                                                 </nav>					
@@ -1029,7 +1118,8 @@
                                                         <td>
                                                             <a ng-click="deletesome(x.committee_id,'committee')" class="btn btn-default"><span class="fa fa-trash-o"></span> </a>
                                                         </td>
-                                                        <td ><img src="http://cs-server.usc.edu:45678/hw/hw8/images/s.svg" class="img-responsive" style="width:20px;height:auto">{{x.chamber}}</td>
+                                                        <td ng-if="x.chamber == 'house'" ><img src="http://cs-server.usc.edu:45678/hw/hw8/images/h.png" class="img-responsive" style="width:20px;height:auto">{{x.chamber}}</td>
+                                                        <td ng-if="x.chamber != 'house'" ><img src="http://cs-server.usc.edu:45678/hw/hw8/images/s.svg" class="img-responsive" style="width:20px;height:auto">{{x.chamber}}</td>
                                                         <td ng-bind="x.committee_id"></td>
                                                         <td ng-bind="x.name"></td>
                                                         <td ng-bind="x.parent_committee_id"></td>
@@ -1038,6 +1128,11 @@
                                                 </table>
                                                 <nav>
                                                     <ul class="pagination">
+                                                        <li>
+                                                            <a ng-click="selectPage(1)" >
+                                                                <span>&nbsp;<<&nbsp;</span>
+                                                            </a>
+                                                        </li>
                                                         <li>
                                                         <a ng-click="Previous()">
                                                             <span>&nbsp;<&nbsp;</span>
@@ -1050,6 +1145,11 @@
                                                         <a ng-click="Next()">
                                                             <span>&nbsp;>&nbsp;</span>
                                                         </a>
+                                                        </li>
+                                                        <li>
+                                                            <a ng-click="selectPage(pages)" >
+                                                                <span>&nbsp;>>&nbsp;</span>
+                                                            </a>
                                                         </li>
                                                     </ul>
                                                 </nav>					
@@ -1330,451 +1430,5 @@
             </div>
        </div>
     </div>
-    
-       
-        
-        
-<script>
-
-    (function() {
-
-        var app = angular.module('myApp', []);
-        app.controller('FilesController', function ($scope, $sce, $http){
-            $scope.files = [];
-            $scope.flag1 = false;
-            $scope.flag2 = true;
-            $scope.flag3 = true;
-            $scope.flag4 = true;
-            $scope.flagfav1 = true;
-            $scope.flagfav2 = true;
-            $scope.flagnav = false;
-            //$scope.title = new array(); 
-            $scope.doSomething = function(requestString){
-                $scope.flag1 = false;
-                $scope.flag2 = true;
-                $scope.flag3 = true;
-                $scope.flag4 = true;
-                var reg = /(([^?&=]+)(?:=([^?&=]*))*)/g;
-                var result = {};
-                var match;
-                var key;
-                var value;
-                while (match = reg.exec(requestString)) {
-                    key = match[2];
-                    value = match[3] || '';
-                    result[key] = decodeURIComponent(value);
-                }
-                if(result['searchflag'] != undefined)
-                {
-                    //alert(result['searchflag']);
-                    var invals = $scope.bioguide;
-                    if(invals)
-                    {
-                        //alert("back?category="+result['category']+"&searchflag="+invals);
-                        requestString = "back.php?category="+result['category']+"&searchflag="+invals;
-                    }
-                }
-                $http.get(requestString).then(function (response) {
-                    //数据源
-                    $scope.data = response.data.results;
-                    $scope.data.sort(function(a, b) {
-                        var textA = a.last_name.toUpperCase();
-                        var textB = b.last_name.toUpperCase();
-                        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-                    });
-                    //分页总数
-                    $scope.pageSize = 10;
-                    $scope.pages = Math.ceil($scope.data.length / $scope.pageSize); //分页数
-                    $scope.newPages = $scope.pages > 10 ? 10 : $scope.pages;
-                    $scope.pageList = [];
-                    $scope.selPage = 1;
-                    //设置表格数据源(分页)
-                    $scope.setData = function () {
-                        $scope.items = $scope.data.slice(($scope.pageSize * ($scope.selPage - 1)), ($scope.selPage * $scope.pageSize));//通过当前页数筛选出表格当前显示数据
-                    }
-                    $scope.items = $scope.data.slice(0, $scope.pageSize);
-
-                    //分页要repeat的数组
-                    for (var i = 0; i < $scope.newPages; i++) {
-                        $scope.pageList.push(i + 1);
-                    }
-                    //打印当前选中页索引
-                    $scope.selectPage = function (page) {
-                        //不能小于1大于最大
-                        if (page < 1 || page > $scope.pages) return;
-                        //最多显示分页数5
-                        /*if (page > 2) {
-                            //因为只显示5个页数，大于2页开始分页转换
-                            var newpageList = [];
-                            for (var i = (page - 3) ; i < ((page + 2) > $scope.pages ? $scope.pages : (page + 2)) ; i++) {
-                                newpageList.push(i + 1);
-                            }
-                            $scope.pageList = newpageList;
-                        }*/
-                        if (page >= 1) {
-                            //因为只显示5个页数，大于2页开始分页转换
-                            var newpageList = [];
-                            for (var i = (page - 2) ; i < ((page + 8) > $scope.pages ? $scope.pages : (page + 8)) ; i++) {
-                                if(i>=0){
-                                   newpageList.push(i + 1);
-                                }
-                            }
-                            $scope.pageList = newpageList;
-                        }
-                        
-                        $scope.selPage = page;
-                        $scope.setData();
-                        $scope.isActivePage(page);
-                        console.log("select page:" + page);
-                    };
-                    //设置当前选中页样式
-                    $scope.isActivePage = function (page) {
-                        return $scope.selPage == page;
-                    };
-                    //&nbsp;<&nbsp;
-                    $scope.Previous = function () {
-                        $scope.selectPage($scope.selPage - 1);
-                    }
-                    //&nbsp;>&nbsp;
-                    $scope.Next = function () {
-                        $scope.selectPage($scope.selPage + 1);
-                    };
-                    });
-            }
-            $scope.detail_part1 = function(requestString){
-                $scope.flagfav1=false;
-                $scope.flagfav2 = true;
-                $http.get(requestString).then(function (response) {
-                    $scope.data_detail1 = response.data.results; 
-                });
-            }
-            
-            $scope.doSomething('back.php?category=1');
-            /*start billing*/
-            $scope.dobill= function(requestString){
-                $scope.flag1 = true;
-                $scope.flag2 = false;
-                $scope.flag3 = true;
-                $scope.flag4 = true;
-                var reg = /(([^?&=]+)(?:=([^?&=]*))*)/g;
-                var result = {};
-                var match;
-                var key;
-                var value;
-                while (match = reg.exec(requestString)) {
-                    key = match[2];
-                    value = match[3] || '';
-                    result[key] = decodeURIComponent(value);
-                }
-                if(result['searchflag'] != undefined)
-                {
-                    //alert(result['searchflag']);
-                    var invals = $scope.bill;
-                    if(invals)
-                    {
-                        //alert("back?bill="+result['bill']+"&searchflag="+invals);
-                        requestString = "back.php?bill="+result['bill']+"&searchflag="+invals;
-                    }
-                }
-                $http.get(requestString).then(function (response) {
-                    //数据源
-                    $scope.data = response.data.results;
-                    //分页总数
-                    $scope.pageSize = 10;
-                    $scope.pages = Math.ceil($scope.data.length / $scope.pageSize); //分页数
-                    $scope.newPages = $scope.pages > 10 ? 10 : $scope.pages;
-                    $scope.pageList = [];
-                    $scope.selPage = 1;
-                    //设置表格数据源(分页)
-                    $scope.setData = function () {
-                        $scope.billitems = $scope.data.slice(($scope.pageSize * ($scope.selPage - 1)), ($scope.selPage * $scope.pageSize));//通过当前页数筛选出表格当前显示数据
-                    }
-                    $scope.billitems = $scope.data.slice(0, $scope.pageSize);
-
-                    //分页要repeat的数组
-                    for (var i = 0; i < $scope.newPages; i++) {
-                        $scope.pageList.push(i + 1);
-                    }
-                    //打印当前选中页索引
-                    $scope.selectPage = function (page) {
-                        //不能小于1大于最大
-                        if (page < 1 || page > $scope.pages) return;
-                        //最多显示分页数5
-                        if (page > 2) {
-                            //因为只显示5个页数，大于2页开始分页转换
-                            var newpageList = [];
-                            for (var i = (page - 3) ; i < ((page + 2) > $scope.pages ? $scope.pages : (page + 2)) ; i++) {
-                                newpageList.push(i + 1);
-                            }
-                            $scope.pageList = newpageList;
-                        }
-                        $scope.selPage = page;
-                        $scope.setData();
-                        $scope.isActivePage(page);
-                        console.log("select page:" + page);
-                    };
-                    //设置当前选中页样式
-                    $scope.isActivePage = function (page) {
-                        return $scope.selPage == page;
-                    };
-                    //&nbsp;<&nbsp;
-                    $scope.Previous = function () {
-                        $scope.selectPage($scope.selPage - 1);
-                    }
-                    //&nbsp;>&nbsp;
-                    $scope.Next = function () {
-                        $scope.selectPage($scope.selPage + 1);
-                    };
-                    });
-            }
-            $scope.detail_part2 = function(requestString){
-                $scope.flagfav1=true;
-                $scope.flagfav2 = false;
-                $http.get(requestString).then(function (response) {
-                    $scope.data_detail2 = response.data.results;                
-                });
-            }
-            /*end bill*/
-            $scope.doCom= function(requestString){
-                $scope.flag1 = true;
-                $scope.flag2 = true;
-                $scope.flag3 = false;
-                $scope.flag4 = true;
-                var reg = /(([^?&=]+)(?:=([^?&=]*))*)/g;
-                var result = {};
-                var match;
-                var key;
-                var value;
-                while (match = reg.exec(requestString)) {
-                    key = match[2];
-                    value = match[3] || '';
-                    result[key] = decodeURIComponent(value);
-                }
-                if(result['searchflag'] != undefined)
-                {
-                    //alert(result['searchflag']);
-                    var invals = $scope.com;
-                    if(invals)
-                    {
-                        //alert("back?com="+result['com']+"&searchflag="+invals);
-                        requestString = "back.php?com="+result['com']+"&searchflag="+invals;
-                    }
-                }
-                $http.get(requestString).then(function (response) {
-                    //数据源
-                    $scope.data = response.data.results;
-                    //分页总数
-                    $scope.pageSize = 10;
-                    $scope.pages = Math.ceil($scope.data.length / $scope.pageSize); //分页数
-                    $scope.newPages = $scope.pages > 10 ? 10 : $scope.pages;
-                    $scope.pageList = [];
-                    $scope.selPage = 1;
-                    //设置表格数据源(分页)
-                    $scope.setData = function () {
-                        $scope.comitems = $scope.data.slice(($scope.pageSize * ($scope.selPage - 1)), ($scope.selPage * $scope.pageSize));//通过当前页数筛选出表格当前显示数据
-                    }
-                    $scope.comitems = $scope.data.slice(0, $scope.pageSize);
-
-                    //分页要repeat的数组
-                    for (var i = 0; i < $scope.newPages; i++) {
-                        $scope.pageList.push(i + 1);
-                    }
-                    //打印当前选中页索引
-                    $scope.selectPage = function (page) {
-                        //不能小于1大于最大
-                        if (page < 1 || page > $scope.pages) return;
-                        //最多显示分页数5
-                        if (page > 2) {
-                            //因为只显示5个页数，大于2页开始分页转换
-                            var newpageList = [];
-                            for (var i = (page - 3) ; i < ((page + 2) > $scope.pages ? $scope.pages : (page + 2)) ; i++) {
-                                newpageList.push(i + 1);
-                            }
-                            $scope.pageList = newpageList;
-                        }
-                        $scope.selPage = page;
-                        $scope.setData();
-                        $scope.isActivePage(page);
-                        console.log("select page:" + page);
-                    };
-                    //设置当前选中页样式
-                    $scope.isActivePage = function (page) {
-                        return $scope.selPage == page;
-                    };
-                    //&nbsp;<&nbsp;
-                    $scope.Previous = function () {
-                        $scope.selectPage($scope.selPage - 1);
-                    }
-                    //&nbsp;>&nbsp;
-                    $scope.Next = function () {
-                        $scope.selectPage($scope.selPage + 1);
-                    };
-                    });
-            }
-            $scope.detail_part3 = function(requestString){
-                $http.get(requestString).then(function (response) {
-                    $scope.data_detail3 = response.data.results;                
-                });
-            }
-            /*end commit*/
-            /*favorite add */
-            $scope.favorite = function(requestString,flagString){ //bioguide bill committee
-                var tmp="";
-                tmp = localStorage.getItem(flagString);
-                
-                if(("."+flagString+requestString) == 'null' || ($("."+flagString+requestString).attr("class")).search("text-warning") !=-1)
-                {
-                    $("."+flagString+requestString).removeClass("text-warning");
-                    if(tmp != null)
-                    {
-                        localStorage.setItem(flagString,tmp.replace('$$'+requestString,''));
-                    }
-                    
-                }else{
-                    $("."+flagString+requestString).addClass("text-warning");
-                    if(tmp == null)
-                    {
-                        localStorage.setItem(flagString,'$$'+requestString);
-                    }else
-                    {
-                        if(tmp.search(requestString) == -1)
-                        {
-                            localStorage.setItem(flagString,tmp + '$$' + requestString);
-                        }
-                    }
-                }
-               
-                //alert(localStorage.getItem(flagString));
-                //alert(flagString);
-            }
-            /*end favorite*/
-            /*start favorite list*/
-            $scope.doFav = function(requestString){
-                $scope.flag1 = true;
-                $scope.flag2 = true;
-                $scope.flag3 = true;
-                $scope.flag4 = false;
-                var reg = /(([^?&=]+)(?:=([^?&=]*))*)/g;
-                var result = {};
-                var match;
-                var key;
-                var value;
-                while (match = reg.exec(requestString)) {
-                    key = match[2];
-                    value = match[3] || '';
-                    result[key] = decodeURIComponent(value);
-                }
-                var tmp = '';
-                tmp = localStorage.getItem(result['fav'])
-                requestString = "back.php?fav="+result['fav'] + "&content=" + tmp;
-                alert(requestString);
-                //return 0;
-                $http.get(requestString).then(function (response) {
-                    //数据源
-                    $scope.data = response.data.results;
-                    //分页总数
-                    $scope.pageSize = 10;
-                    $scope.pages = Math.ceil($scope.data.length / $scope.pageSize); //分页数
-                    $scope.newPages = $scope.pages > 10 ? 10 : $scope.pages;
-                    $scope.pageList = [];
-                    $scope.selPage = 1;
-                    //设置表格数据源(分页)
-                    $scope.setData = function () {
-                        $scope.favitems = $scope.data.slice(($scope.pageSize * ($scope.selPage - 1)), ($scope.selPage * $scope.pageSize));//通过当前页数筛选出表格当前显示数据
-                    }
-                    $scope.favitems = $scope.data.slice(0, $scope.pageSize);
-
-                    //分页要repeat的数组
-                    for (var i = 0; i < $scope.newPages; i++) {
-                        $scope.pageList.push(i + 1);
-                    }
-                    //打印当前选中页索引
-                    $scope.selectPage = function (page) {
-                        //不能小于1大于最大
-                        if (page < 1 || page > $scope.pages) return;
-                        //最多显示分页数5
-                        if (page > 2) {
-                            //因为只显示5个页数，大于2页开始分页转换
-                            var newpageList = [];
-                            for (var i = (page - 3) ; i < ((page + 2) > $scope.pages ? $scope.pages : (page + 2)) ; i++) {
-                                newpageList.push(i + 1);
-                            }
-                            $scope.pageList = newpageList;
-                        }
-                        $scope.selPage = page;
-                        $scope.setData();
-                        $scope.isActivePage(page);
-                        console.log("select page:" + page);
-                    };
-                    //设置当前选中页样式
-                    $scope.isActivePage = function (page) {
-                        return $scope.selPage == page;
-                    };
-                    //&nbsp;<&nbsp;
-                    $scope.Previous = function () {
-                        $scope.selectPage($scope.selPage - 1);
-                    }
-                    //&nbsp;>&nbsp;
-                    $scope.Next = function () {
-                        $scope.selectPage($scope.selPage + 1);
-                    };
-                    });
-            }
-            /*change*/
-            $scope.changecolor = function(requestString){
-                $("."+requestString).removeClass("text-warning");
-            }
-            $scope.doHidenav= function(requestString){
-                //alert(requestString);
-                if(requestString)
-                {
-                    $scope.flagnav = false;
-                }else
-                {
-                    $scope.flagnav = true;
-                }
-            }
-            /*change*/
-            $scope.deletesome = function(requestString,flagString){
-                var tmp="";
-                tmp = localStorage.getItem(flagString);
-                tmp = tmp.replace("$$"+requestString,"");
-                localStorage.setItem(flagString,tmp);
-                if(flagString == "bioguide" )
-                {
-                    $scope.doFav('back.php?fav=bioguide');
-                }else if(flagString == "bill" )
-                {
-                    $scope.doFav('back.php?fav=bill');
-                }
-                else if(flagString == "committee" )
-                {
-                    $scope.doFav('back.php?fav=committee');
-                }
-            }
-            
-            
-        });          
-    })();
-
-</script>
-<script>
-    $('#myCarousel').carousel({
-    pause: true,
-    interval: false
-    })
-    $('#myCarouselbill').carousel({
-    pause: true,
-    interval: false
-    })
-    $('#myCarouselcom').carousel({
-    pause: true,
-    interval: false
-    })
-    $('#myCarouselfav').carousel({
-    pause: true,
-    interval: false
-    })
-</script>
 </body>
 </html>

@@ -135,7 +135,7 @@ if($com == 'house')
     {
        $url='https://congress.api.sunlightfoundation.com/committees?fields=chamber,committee_id,name,parent_committee_id,phone,office&query='.$searchflag.'&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';
     }else{
-       $url='https://congress.api.sunlightfoundation.com/committees?fields=chamber,committee_id,name,parent_committee_id,phone,office&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';
+       $url='https://congress.api.sunlightfoundation.com/committees?fields=chamber,committee_id,name,parent_committee_id,phone,office&chamber='.$com.'&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';
     }
     $html=file_get_contents($url);
     echo $html;
