@@ -369,19 +369,4 @@
             
         });          
     })();
-$('#myCarousel').carousel({
-    pause: true,
-    interval: false
-    })
-    $('#myCarouselbill').carousel({
-    pause: true,
-    interval: false
-    })
-    $('#myCarouselcom').carousel({
-    pause: true,
-    interval: false
-    })
-    $('#myCarouselfav').carousel({
-    pause: true,
-    interval: false
-    })
+

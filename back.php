@@ -110,7 +110,11 @@ if($detail == 1&&$bioguide_id != '')
 {
     $url='https://congress.api.sunlightfoundation.com/bills?fields=bill_id,chamber,bill_type,sponsor,urls,last_version,history,introduced_on&bill_id='.$billid.'&per_page=all&apikey=542bae46d15c4c5c99bb423075fda3a7';
     $html=file_get_contents($url);
-    echo $html;
+	$array1 = json_decode($html, true);
+	$introduced_on = strtotime($array1['results'][0]['introduced_on']);
+	$array1['results'][0]['introduced_on'] = date('F j, Y',$introduced_on);
+	$res = json_encode($array1, true);
+    echo $res;
     exit;
 
 }
